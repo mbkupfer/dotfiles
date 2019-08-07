@@ -1,11 +1,5 @@
 # this file is sourced by non-login interactive shells and ~/.bash_profile
 
-if [[ -t 1 ]]; then
-    echo History repeats itself:
-    echo the first time as tragedy,
-    echo the second time as farce.
-fi
-
 ## XDG config
 if [[ ! -x "$XDG_CONFIG_HOME" ]]; then
     shell_config="$HOME/.config/shell"
@@ -30,8 +24,8 @@ fi
 
 # path setup
 source "$shell_config/path-edit.sh"
-path_front /sbin /usr/sbin /usr/local/sbin /usr/local/bin /usr/bin /bin ~/bin
-path_back  ~/.cargo/bin /usr/local/go/bin
+#path_front /sbin /usr/sbin /usr/local/sbin /usr/local/bin /usr/bin /bin ~/bin
+#path_back  ~/.cargo/bin /usr/local/go/bin
 
 # completion setup
 source "$shell_config/git-completion.bash"
@@ -67,6 +61,9 @@ HISTFILESIZE=
 # Use separate history file to avoid truncation
 HISTFILE="$shell_data/bash_history"
 
+# environment varaibles
+source "$shell_config/environ.sh"
+
 # prompt setup
 source "$shell_config/git-prompt.sh"
 PROMPT_DIRTRIM=2
@@ -78,7 +75,7 @@ GIT_PS1_SHOWUPSTREAM=auto
 
 set_prompt () {
     local last_command=$?
-    PS1=''
+    PS1=' '
 
     # save after every command
     history -a
@@ -99,59 +96,21 @@ set_prompt () {
         PS1+=$color_off
     fi
 
-    # hostname
-    if [[ -n $SSH_CONNECTION ]]; then
-        PS1+=$color_green
-    else
-        PS1+=$color_blue
-    fi
-
-    PS1+="@"
-    PS1+=$color_off
-    PS1+="\h "
-
+    PS1+="m@ksim "
     # shortened working directory
-    PS1+=$color_blue
     PS1+='\w '
-    PS1+=$color_off
+    PS1+=$color_green
 
     # add Git status with color hints
     PS1+="$(__git_ps1 '%s ')"
-
-    # red for root, cyan for user
-    if [[ $EUID == 0 ]]; then
-        PS1+=$color_red
-    else
-        PS1+=$color_cyan
-    fi
-
-    # end of prompt
-    PS1+='\n> '
     PS1+=$color_off
+    PS1+="$ "
 }
 PROMPT_COMMAND='set_prompt'
 
 # aliases
 source "$shell_config/aliases.sh"
 
-# enable ls colors
-if ls --color=auto &> /dev/null; then
-    alias ls='ls --color=auto'
-else
-    export CLICOLOR=1
-fi
-
-# colored man pages
-man() {
-    env LESS_TERMCAP_mb=$'\E[01;31m' \
-        LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-        LESS_TERMCAP_me=$'\E[0m' \
-        LESS_TERMCAP_se=$'\E[0m' \
-        LESS_TERMCAP_so=$'\E[38;5;246m' \
-        LESS_TERMCAP_ue=$'\E[0m' \
-        LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-        man "$@"
-}
 
 # disable flow control so C-s and C-q work
 if [[ -t 1 ]]; then
@@ -163,7 +122,3 @@ if [[ -r "$shell_config/local.sh" ]]; then
     source "$shell_config/local.sh"
 fi
 
-# OCaml setup
-if [[ -r ~/.opam/opam-init/init.sh ]]; then
-    source ~/.opam/opam-init/init.sh &> /dev/null
-fi

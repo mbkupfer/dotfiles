@@ -1,25 +1,27 @@
 [user]
-	email = mbkupfer@gmail.com
-	name = Maxim Kupfer 
+    email = mbkupfer@gmail.com
+    name = Maxim Kupfer
 [core]
     excludesFile = ~/.config/git/ignore
+    editor = /usr/local/bin/vim
 [alias]
-	st = status -sb
-	co = checkout
-	lol = log --graph --all --oneline --full-history --date-order --date=short --color --abbrev-commit --decorate
-	ci = commit
-	l1 = log --oneline
-	a = add
-	b = branch --sort=-committerdate
-	bm = branch --merged
-	bnm = branch --no-merged
-	ci = commit
-	co = checkout
-	h = help
-	hc = help config
-	lf = log --pretty=fuller
-	s = status
+    st = status -sb
+    co = checkout
+    lol = log --graph --all --decorate --pretty=oneline -all --abbrev-commit
+    ci = commit
+    l1 = log --oneline
+    a = add
+    b = branch --sort=-committerdate
+    bm = branch --merged
+    bnm = branch --no-merged
+    ci = commit
+    co = checkout
+    h = help
+    hc = help config
+    lf = log --pretty=fuller
+    s = status
+    alist = config --get-regexp alias
 [log]
-	abbrevCommit = true
-	date = local
-	decorate = short
+    abbrevCommit = true
+    date = local
+    decorate = short
