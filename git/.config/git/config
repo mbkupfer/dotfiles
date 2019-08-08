@@ -7,7 +7,7 @@
 [alias]
     st = status -sb
     co = checkout
-    lol = log --graph --all --decorate --pretty=oneline -all --abbrev-commit
+    lol = log --graph --all --decorate --pretty=oneline --abbrev-commit
     ci = commit
     l1 = log --oneline
     a = add

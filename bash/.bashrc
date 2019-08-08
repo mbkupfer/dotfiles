@@ -29,6 +29,7 @@ path_front /sbin /usr/sbin /usr/local/sbin /usr/local/bin /usr/bin /bin ~/bin
 
 # completion setup
 source "$shell_config/git-completion.bash"
+source "$shell_config/tmux.sh"
 
 # cd options
 shopt -s cdspell
