@@ -25,7 +25,7 @@ fi
 # path setup
 source "$shell_config/path-edit.sh"
 path_front /sbin /usr/sbin /usr/local/sbin /usr/local/bin /usr/bin /bin ~/bin
-#path_back  ~/.cargo/bin /usr/local/go/bin
+path_back /Library/Frameworks/Python.framework/Versions/3.7/bin/ 
 
 # completion setup
 source "$shell_config/git-completion.bash"
