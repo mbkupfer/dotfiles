@@ -1,0 +1,10 @@
+--recurse=yes
+--exclude=.git
+--exclude=tmp
+--exclude=log
+--exclude=*.html
+
+--exclude=venv
+--python-kinds=-i
+
+--exclude=node_modules
