@@ -66,7 +66,6 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set mouse=a
-set pythonthreedll=/usr/local/bin/python3
 
 " Save with leader
 nnoremap <leader>w :w<cr>
@@ -103,6 +102,10 @@ inoremap jk <Esc>
 
 " Open up line above in one step
 inoremap <leader>o <C-o><S-o>
+
+" Split window using "|" and "-"
+nnoremap <C-w><bar> :vsplit<CR>
+nnoremap <C-w>_ :split<CR>
 
 " ABBREVIATIONS
 " quick alias for vimrc. re has no real significance
