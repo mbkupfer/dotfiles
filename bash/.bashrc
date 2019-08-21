@@ -123,3 +123,9 @@ if [[ -r "$shell_config/local.sh" ]]; then
     source "$shell_config/local.sh"
 fi
 
+
+# Manualy disable bouncing in defualts as this
+# keeps getting re-enabled for some reason.
+if [[ -f "$shell_config/no-bouncing.sh" ]]; then
+    source "$shell_config/no-bouncing.sh"
+fi

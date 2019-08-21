@@ -6,6 +6,7 @@
 c.InteractiveShellApp.exec_lines = [
     'import pandas as pd',
     'import numpy as np',
+    'from importlib import reload',
     '%store -r',
 ]
 c.TerminalIPythonApp.force_interact = True
