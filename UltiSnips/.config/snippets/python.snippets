@@ -14,3 +14,62 @@ Returns
 -------
 """
 endsnippet
+
+snippet mod "Module docstring" b
+"""
+File: `!p snip.rv = fn`
+Date: `!v strftime("%b %Y")`
+Description: ${1:DESCRIPTION}
+"""
+
+endsnippet
+
+snippet dash "Dash boilerplate" b
+import os 
+
+import dash
+from dash.dependencies import Input, Output, State
+import dash_core_components as dcc
+import dash_html_components as html
+
+# production or development (DEBUG) flag:
+debug = bool(os.environ.get('FLASK_ENV') == 'development')
+
+app = dash.Dash(__name__)
+app.title = 'SIA Interactive Tool'
+server = app.server
+
+# @app.callback(Output('component-id', 'component-attr'),
+#               [Input('component-id', 'component-attr')])
+# def funciton(arg):
+#	return ...
+
+if __name__ == '__main__':
+    app.run_server(debug=debug)
+endsnippet
+
+snippet cb "Dash callback" b
+@app.callback(Output('$1', '$2'),
+              [Input('$3', '$4')])
+def $5($6):
+	pass
+endsnippet
+
+snippet dcc "Dash core components" b 
+import dash_core_components as dcc
+endsnippet
+
+snippet html "Dash html components" b
+import dash_html_components as html
+endsnippet
+
+snippet argparse "Argparse boilerplate" b
+parser = argparse.ArgumentParser()
+parser.add_argument('$1')
+args = parser.parse_args()
+$0
+endsnippet
+
+snippet pd "Description" b
+import pandas as pd
+endsnippet
