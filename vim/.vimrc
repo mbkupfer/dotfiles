@@ -17,6 +17,9 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'suy/vim-context-commentstring'
 
+" Python
+Plugin 'davidhalter/jedi-vim'
+
 " Linting
 Plugin 'w0rp/ale'
 
@@ -41,21 +44,20 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " Set leader key
 
-let mapleader = ","
 
-" SETTINGS
+""""""""""""""
+"  Settings  "
+""""""""""""""
+
+set spelllang=en_us
 set updatetime=100 " Mainly to make git-gutter speedier
 set completeopt=longest,menuone
 set previewheight=8
-"set hlsearch
-"set incsearch
 set number
 set relativenumber
-set foldnestmax=1
 set splitright
 set nowrap
 set whichwrap=b,s
-set foldmethod=indent
 set showcmd
 set ruler
 syntax enable
@@ -67,6 +69,13 @@ set expandtab
 set smartindent
 set mouse=a
 
+""""""""""
+"  Maps  "
+""""""""""
+let mapleader = ","
+
+" Open preview window tag on double click
+map <2-LeftMouse> :exe "ptag ". expand("<cword>")<CR>
 " Save with leader
 nnoremap <leader>w :w<cr>
 " Quick goto buffer map
@@ -76,50 +85,67 @@ nnoremap gb :ls<CR>:b
 nnoremap ; :
 vnoremap ; :
 
-" special settings to make links bars
-" visible in vim help
-set conceallevel=0
-hi link HelpBar Normal " KEYMAPS
-hi link HelpStar Normal
 " Quick exit from insert mode
-:imap jk <Esc>
+imap jk <Esc>
 inoremap jk <Esc>
 " Shift tab to indent/unindent
-:inoremap <S-Tab> <C-O><lt><lt>
-:nnoremap <Tab> >>
-:nnoremap <S-Tab> <lt><lt>
-:vnoremap <Tab> >
-:vnoremap <S-Tab> <lt>
+inoremap <S-Tab> <C-O><lt><lt>
+nnoremap <Tab> >>
+nnoremap <S-Tab> <lt><lt>
+vnoremap <Tab> >
+vnoremap <S-Tab> <lt>
 
-" Move lines using shift
-:nnoremap <S-Up> :m-2<CR>
-:nnoremap <S-Down> :m+<CR>
-:inoremap <S-Up> <Esc>:m-2<CR>
-:inoremap <S-Down> <Esc>:m+<CR>
+" Move individual lines using shift + arrow
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
+inoremap <S-Up> <Esc>:m-2<CR>
+inoremap <S-Down> <Esc>:m+<CR>
 
 " Change working directory to current file dir
-:noremap <leader>cd :cd %:p:h<CR>
+noremap <leader>cd :cd %:p:h<CR>
+noremap <leader>lcd :lcd %:p:h<CR>
+noremap <leader>tcd :tcd %:p:h<CR>
 
 " Open up line above in one step
 inoremap <leader>o <C-o><S-o>
 
 " Split window using "|" and "-"
-nnoremap <C-w><bar> :vsplit<CR>
-nnoremap <C-w>_ :split<CR>
+nnoremap <C-w>\ :vsplit<CR>
+nnoremap <C-w>- :split<CR>
 
-" ABBREVIATIONS
+""""""""""""""""""""""
+"  F(1-12) mappings  "
+""""""""""""""""""""""
+"F1 - Help shortcut
+nnoremap <F2> :UltiSnipsEdit!<CR>|" Prompt to edit snippets
+"F3
+"F4
+"F5 
+"F6
+"F7
+nnoremap <F7> :set spell!<CR>|" toggle spellcheck
+"F8 - ALEFix
+"F9
+"F10
+"F11
+"F12
+"
+
+"""""""""""""""""""
+"  Abbreviations  "
+"""""""""""""""""""
+
 " quick alias for vimrc. re has no real significance
 " just that it is easy to type compared to rc.
 ca re $HOME/.vimrc
 ca e Exp
 
 
-" OTHER
+"""""""""""""""""""""""""""
+"  Plugin configurations  "
+"""""""""""""""""""""""""""
 
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-
-" Specify python version for ultisnips
+" Ultisnips
 let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/snippets']
 let g:UltiSnipsSnippetsDir=$HOME.'/.config/snippets'
 let g:UltiSnipsUsePythonVersion = 3
@@ -131,9 +157,7 @@ let g:ultisnips_python_quoting_style = 'single'
 
 
 " ALE settings
-" Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
-" Navigate to errors quickly
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_use_global_executables = 1
@@ -147,6 +171,7 @@ let g:ale_python_pylint_options = '--rcfile $HOME/.config/pylintrc'
 let g:ale_javascript_prettier_executable = 'prettier'
 let g:ale_python_black_options = '--skip-string-normalization'
 let g:ale_python_pylint_change_directory = 0
+
 " Emmet settings
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
@@ -154,6 +179,12 @@ let g:user_emmet_settings = {
     \  },
   \}
 
+" Jedi vim
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+"""""""""""""""""""
+"  Auto commands  "
+"""""""""""""""""""
 
 " Add file directory to Vim path
 " Useful for opening nested files in
@@ -165,3 +196,5 @@ autocmd BufRead *
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType jsx setlocal formatoptions+=r
 autocmd FileType jsx setlocal indentkeys-=o
+autocmd FileType python setlocal foldmethod=indent foldnestmax=1
+
