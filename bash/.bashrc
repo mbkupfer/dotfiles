@@ -78,6 +78,13 @@ set_prompt () {
     local last_command=$?
     PS1=' '
 
+    # Add virtualenv indicator into prompt
+    # as this is get overwritten otherwise via
+    # the git aware prompt.
+    if [ "$VIRTUAL_ENV" != ""  ]; then
+        PS1+="(`basename \"$VIRTUAL_ENV\"`) "
+    fi
+
     # save after every command
     history -a
 
@@ -123,9 +130,7 @@ if [[ -r "$shell_config/local.sh" ]]; then
     source "$shell_config/local.sh"
 fi
 
-
-# Manualy disable bouncing in defualts as this
-# keeps getting re-enabled for some reason.
-if [[ -f "$shell_config/no-bouncing.sh" ]]; then
-    source "$shell_config/no-bouncing.sh"
+# Source functions
+if [[ -f "$shell_config/functions.sh" ]]; then
+    source "$shell_config/functions.sh"
 fi

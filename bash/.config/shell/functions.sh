@@ -31,3 +31,79 @@ edit_profile(){
   vim ~/.bashrc && source $_
 }
 
+##########################################
+#  PYTHON VIRTUAL ENVIRONMENT FUNCTIONS  #
+##########################################
+
+_deactivate_venv() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        deactivate
+    fi
+    if [[ -n $TMUX ]]; then
+        tmux set-environment -u VIRTUAL_ENV
+    fi
+}
+
+venv() {
+    case $1 in
+        "")
+            source venv/bin/activate
+            if [[ -n $TMUX ]]; then
+                tmux set-environment VIRTUAL_ENV "$VIRTUAL_ENV"
+            fi
+        ;;
+        create)
+            python3 -m virtualenv venv
+            venv
+        ;;
+        deactivate)
+             _deactivate_venv
+        ;;
+        delete)
+            _deactivate_venv
+            rm -rf venv/
+        ;;
+    esac
+}
+
+
+######################################
+#  Virtual environment aware python  #
+######################################
+
+pip() {
+
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        "$VIRTUAL_ENV"/bin/pip "$@";
+    else pip "$@";
+    fi
+}
+
+python() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        "$VIRTUAL_ENV"/bin/python "$@";
+    else python "$@";
+    fi
+}
+
+###################
+#  Documentation  #
+###################
+
+docs() {
+    case $1 in
+        "python")
+            py_ver="$(python3 --version | grep -o '\d\.\d')"
+            open /Library/Frameworks/Python.framework/Versions/$py_ver/Resources/English.lproj/Documentation/index.html
+        ;;
+    esac
+}
+
+#######################################
+#  Force dock not to bounce on MacOS  #
+#######################################
+
+no_bouncing(){
+    defaults write com.apple.Dock "no-bouncing" -bool TRUE
+    killall Dock
+}
