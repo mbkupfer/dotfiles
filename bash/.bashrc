@@ -103,8 +103,8 @@ set_prompt () {
         PS1+='$? '
         PS1+=$color_off
     fi
-
-    PS1+="m@ksim "
+    
+    PS1+="\u@\h "
     # shortened working directory
     PS1+='\w '
     PS1+=$color_green
@@ -134,3 +134,6 @@ fi
 if [[ -f "$shell_config/functions.sh" ]]; then
     source "$shell_config/functions.sh"
 fi
+
+# Hook for direnv
+eval "$(direnv hook bash)"
