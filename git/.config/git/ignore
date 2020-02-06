@@ -1,3 +1,13 @@
+# Personal
+scratch.txt
+materials
+
+# Environment
+tmp
+tags
+local
+.envrc
+
 # Compiled source
 *.elc
 *.pyc
@@ -44,4 +54,5 @@ Icon
 ._*
 .Spotlight-V100
 .Trashes
+
 

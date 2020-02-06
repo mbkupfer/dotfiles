@@ -19,6 +19,7 @@ Plugin 'suy/vim-context-commentstring'
 
 " Python
 Plugin 'davidhalter/jedi-vim'
+Plugin 'plytophogy/vim-virtualenv'
 
 " Linting
 Plugin 'w0rp/ale'
@@ -55,8 +56,8 @@ set completeopt=longest,menuone
 set previewheight=8
 set number
 set relativenumber
-set splitright
 set nowrap
+set splitright
 set whichwrap=b,s
 set showcmd
 set ruler
@@ -73,6 +74,10 @@ set mouse=a
 "  Maps  "
 """"""""""
 let mapleader = ","
+
+" Correct navigation with wrapped lines
+nnoremap j gj
+nnoremap k gk
 
 " Open preview window tag on double click
 map <2-LeftMouse> :exe "ptag ". expand("<cword>")<CR>
@@ -113,12 +118,15 @@ inoremap <leader>o <C-o><S-o>
 nnoremap <C-w>\ :vsplit<CR>
 nnoremap <C-w>- :split<CR>
 
+" Move text down a line without leaving normal mode
+nnoremap <CR> i<CR><ESC>
+
 """"""""""""""""""""""
 "  F(1-12) mappings  "
 """"""""""""""""""""""
 "F1 - Help shortcut
 nnoremap <F2> :UltiSnipsEdit!<CR>|" Prompt to edit snippets
-"F3
+nnoremap <F3> :set hlsearch!<CR>:set incsearch!<CR>|"Toggle hlsearching
 "F4
 "F5 
 "F6
@@ -144,6 +152,13 @@ ca e Exp
 """""""""""""""""""""""""""
 "  Plugin configurations  "
 """""""""""""""""""""""""""
+
+" GitGutter
+nmap ghp <Plug>GitGutterPreviewHunk
+nmap ghs <Plug>GitGutterStageHunk
+nmap ghu <Plug>GitGutterUndoHunk
+nmap ghn <Plug>GitGutterNextHunk
+nmap ghN <Plug>GitGutterPrevHunk
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/snippets']
@@ -182,6 +197,7 @@ let g:user_emmet_settings = {
 " Jedi vim
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
+" let g:jedi#completions_enabled = 0
 """""""""""""""""""
 "  Auto commands  "
 """""""""""""""""""
