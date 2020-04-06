@@ -126,7 +126,13 @@ function alias_grep() {
 function strongpw() {
     read  -s 'key?Encryption key: '
     echo '' # line break
-    echo -n "$key:$1" | shasum -a 256 | perl -ne "s/([0-9a-f]{2})/print chr hex \$1/gie" | base64 | tr +/ Ea | cut -b 1-20
+    echo -n $(echo -n "$key:$1" \
+        | shasum -a 256 \
+        | perl -ne "s/([0-9a-f]{2})/print chr hex \$1/gie" \
+        | base64 \
+        | tr +/ Ea \
+        | cut -b 1-${2-20}) \
+        |pbcopy
 }
 
 #######################################################################
