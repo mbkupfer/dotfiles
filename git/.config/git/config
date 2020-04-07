@@ -3,7 +3,7 @@
     name = Maxim Kupfer
 [core]
     excludesFile = ~/.config/git/ignore
-    editor = /usr/local/bin/vim
+    editor = vim
 [alias]
     st = status -sb
     co = checkout
