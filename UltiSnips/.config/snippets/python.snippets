@@ -1,3 +1,17 @@
+snippet logger "logger boilerplate" b
+import logging
+logging.basicConfig(
+	filename='app.log',
+	format='%(levelname)-10s %(asctime)s %(message)s',
+	level=logging.INFO
+)
+log = logging.getLogger()
+endsnippet
+
+snippet pdf "pd.DataFrame" i
+df: pd.DataFrame
+endsnippet
+
 snippet ipdb "debugger" b
 import ipdb; ipdb.set_trace()
 endsnippet
@@ -63,11 +77,36 @@ snippet html "Dash html components" b
 import dash_html_components as html
 endsnippet
 
+snippet dbc "Dash bootstrap components" b
+import dash_bootstrap_components as dbc
+endsnippet
+
 snippet argparse "Argparse boilerplate" b
-parser = argparse.ArgumentParser()
-parser.add_argument('$1')
-args = parser.parse_args()
-$0
+import argparse
+
+def main():
+    description = 'A command-line interface for $1.'
+    parser = argparse.ArgumentParser(description=description)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        '--$2',
+        # metavar=('<raw_data>', '<sheetname>'),
+        nargs=$3,
+        help='Scrub raw_data file. Must be an exel file and '
+        + 'must specify sheetname. Outputs a scrubbed data file along '
+        + 'with an aggregate calculations file for review.',
+    )
+    group.add_argument(
+        '-p',
+        '--push',
+        metavar='<scrubbed_data>',
+        help='Push scrubbed data, and calculations, to database. '
+        + 'Also creates a final dataset file for reference.',
+    )
+
+
+    args = parser.parse_args()
+	$0
 endsnippet
 
 snippet pd "Pandas" b
