@@ -153,11 +153,11 @@ ca e Exp
 """""""""""""""""""""""""""
 
 " GitGutter
-nmap ghp <Plug>GitGutterPreviewHunk
-nmap ghs <Plug>GitGutterStageHunk
-nmap ghu <Plug>GitGutterUndoHunk
-nmap ghn <Plug>GitGutterNextHunk
-nmap ghN <Plug>GitGutterPrevHunk
+nmap ghp <Plug>(GitGutterPreviewHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghn <Plug>(GitGutterNextHunk)
+nmap ghN <Plug>(GitGutterPrevHunk)
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/snippets']
