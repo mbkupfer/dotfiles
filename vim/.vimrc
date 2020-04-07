@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " General
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -69,6 +70,8 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set mouse=a
+let g:netrw_liststyle=3
+let g:netrw_list_hide= netrw_gitignore#Hide()
 
 """"""""""
 "  Maps  "
@@ -95,10 +98,6 @@ imap jk <Esc>
 inoremap jk <Esc>
 " Shift tab to indent/unindent
 inoremap <S-Tab> <C-O><lt><lt>
-nnoremap <Tab> >>
-nnoremap <S-Tab> <lt><lt>
-vnoremap <Tab> >
-vnoremap <S-Tab> <lt>
 
 " Move individual lines using shift + arrow
 nnoremap <S-Up> :m-2<CR>
@@ -175,11 +174,11 @@ let g:ultisnips_python_quoting_style = 'single'
 nmap <F8> <Plug>(ale_fix)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_use_global_executables = 1
 let g:ale_fixers = {
 \    '*': ['remove_trailing_lines', 'trim_whitespace'],
 \    'python': ['black'],
-\    'javascript': ['prettier']
+\    'javascript': ['prettier'],
+\    'css': ['prettier'],
 \}
 let g:ale_linters = {'python': ['pylint']}
 let g:ale_python_pylint_options = '--rcfile $HOME/.config/pylintrc'
@@ -212,5 +211,6 @@ autocmd BufRead *
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType jsx setlocal formatoptions+=r
 autocmd FileType jsx setlocal indentkeys-=o
-autocmd FileType python setlocal foldmethod=indent foldnestmax=1
 
+" To use fzf in vim
+set rtp+=/usr/local/opt/fzf
