@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-#
+export PATH=/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mkupfer/.oh-my-zsh"
 
@@ -73,6 +73,7 @@ plugins=(
     git
     vi-mode 
     tmux
+    pylint
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -145,12 +146,17 @@ alias gcia="git commit -v --amend"
 alias hk="heroku"
 alias so="source"
 alias ldot="ls -ald .*"
+alias zshconfig="$EDITOR ~/.zshrc && source ~/.zshrc"
+alias da="direnv allow"
+alias python="python3"
+alias pip="pip3"
 
 
-#######################################################################
-#                        automcompletion setup                        #
-#######################################################################
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/mkupfer/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
+########################
+#  Fuzzy finder setup  #
+########################
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
