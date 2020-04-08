@@ -150,6 +150,8 @@ alias zshconfig="$EDITOR ~/.zshrc && source ~/.zshrc"
 alias da="direnv allow"
 alias python="python3"
 alias pip="pip3"
+# get ls the way I like it
+alias ls='ls -ohG'
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
