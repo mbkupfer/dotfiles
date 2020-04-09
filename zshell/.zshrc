@@ -151,7 +151,8 @@ alias da="direnv allow"
 alias python="python3"
 alias pip="pip3"
 # get ls the way I like it
-alias ls='ls -ohG'
+alias ls='ls -FGLhlo'
+alias du='du -hd 0'
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
