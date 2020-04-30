@@ -14,6 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'suy/vim-context-commentstring'
@@ -61,7 +62,7 @@ set nowrap
 set splitright
 set whichwrap=b,s
 set showcmd
-set ruler
+set noruler
 syntax enable
 set antialias
 set smartcase
@@ -70,6 +71,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set mouse=a
+set tildeop
 let g:netrw_liststyle=3
 let g:netrw_list_hide= netrw_gitignore#Hide()
 
@@ -89,9 +91,10 @@ nnoremap <leader>w :w<cr>
 " Quick goto buffer map
 nnoremap gb :ls<CR>:b
 
-" Easier to use semicolon
-nnoremap ; :
-vnoremap ; :
+" Easier to use semicolon, but regain
+" functionality of repeating `f` and `t` op
+map ; :
+noremap ;; ;
 
 " Quick exit from insert mode
 imap jk <Esc>
@@ -127,7 +130,7 @@ nnoremap <CR> i<CR><ESC>
 nnoremap <F2> :UltiSnipsEdit!<CR>|" Prompt to edit snippets
 nnoremap <F3> :set hlsearch!<CR>:set incsearch!<CR>|"Toggle hlsearching
 "F4
-"F5 
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 "F6
 "F7
 nnoremap <F7> :set spell!<CR>|" toggle spellcheck
