@@ -22,7 +22,7 @@
     s = status
     alist = config --get-regexp alias
     ctags = !.git/hooks/ctags
-    rp = rev-parse
+    rp = rev-parse --short
 [log]
     abbrevCommit = true
     date = local
