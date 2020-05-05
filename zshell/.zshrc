@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/bin:$PATH
 
+# Add home user python bin
+export PATH=$HOME/Library/Python/3.7/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mkupfer/.oh-my-zsh"
 
@@ -163,3 +166,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 ########################
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# silence git gui deprecation warning
+export TK_SILENCE_DEPRECATION=1
