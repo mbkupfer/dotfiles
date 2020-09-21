@@ -13,5 +13,16 @@ import re
 #  3rd party libraries  #
 #########################
 
-import pandas as pd
-import numpy as np
+try:
+    import pandas as pd
+    import numpy as np
+except ModuleNotFoundError:
+    print('Could not import pandas or numpy.')
+
+#################
+#  Global vars  #
+#################
+
+import sys
+executable = sys.executable
+
