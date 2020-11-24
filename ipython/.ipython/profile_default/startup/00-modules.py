@@ -8,6 +8,7 @@ import urllib.request
 import urllib.response
 from pathlib import Path
 import re
+import shelve
 
 #########################
 #  3rd party libraries  #
