@@ -1,3 +1,17 @@
+snippet pylintd "pylint disable" b
+# pylint: disable=
+endsnippet
+snippet app.run "Argparse boilerplate for " i
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('-p', metavar='<port')
+args = parser.parse_args()
+if args.p:
+    port = args.p
+else:
+    port = 8050
+app.run_server(debug=debug, port=port)
+endsnippet
 snippet logger "logger boilerplate" b
 import logging
 logging.basicConfig(
@@ -10,6 +24,10 @@ endsnippet
 
 snippet pdf "pd.DataFrame" i
 df: pd.DataFrame
+endsnippet
+
+snippet pd.df "pd.DataFrame" i
+-> pd.DataFrame
 endsnippet
 
 snippet ipdb "debugger" b
@@ -82,28 +100,8 @@ import dash_bootstrap_components as dbc
 endsnippet
 
 snippet argparse "Argparse boilerplate" b
-import argparse
-
-def main():
-    description = 'A command-line interface for $1.'
-    parser = argparse.ArgumentParser(description=description)
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument(
-        '--$2',
-        # metavar=('<raw_data>', '<sheetname>'),
-        nargs=$3,
-        help='Scrub raw_data file. Must be an exel file and '
-        + 'must specify sheetname. Outputs a scrubbed data file along '
-        + 'with an aggregate calculations file for review.',
-    )
-    group.add_argument(
-        '-p',
-        '--push',
-        metavar='<scrubbed_data>',
-        help='Push scrubbed data, and calculations, to database. '
-        + 'Also creates a final dataset file for reference.',
-    )
-
+	import argparse
+    parser = argparse.ArgumentParser()
 
     args = parser.parse_args()
 	$0

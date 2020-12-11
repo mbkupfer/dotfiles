@@ -1,8 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/bin:$PATH
 
-# Add home user python bin
-export PATH=$HOME/Library/Python/3.7/bin:$PATH
+# # Add home user python bin
+# export PATH=$HOME/Library/Python/3.9/bin:$PATH
+
+# # Add root level python bin
+# export PATH=/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -161,8 +164,17 @@ alias pip="pip3"
 alias ls='ls -FGLhlo'
 alias du='du -hd 0'
 
+####################
+#  autocompletion  #
+####################
+
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+test -e "${HOME}/.local/share/env" && source "${HOME}/.local/share/env"
 
 
 ########################
@@ -173,3 +185,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # silence git gui deprecation warning
 export TK_SILENCE_DEPRECATION=1
+
+#eval "$(pyenv init -)"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
