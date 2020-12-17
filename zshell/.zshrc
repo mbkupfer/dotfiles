@@ -149,13 +149,13 @@ alias gci="git commit -v"
 alias gcia="git commit -v --amend"
 alias hk="heroku"
 alias so="source"
-alias ldot="ls -ald .*"
+# get ls the way I like it
+alias ls='\ls -l --color=auto'
+alias ldot="\ls -ald .* --color=auto"
 alias zshconfig="$EDITOR ~/.zshrc && source ~/.zshrc"
 alias da="direnv allow"
 alias python="python3"
 alias pip="pip3"
-# get ls the way I like it
-alias ls='ls -FGLhlo'
 alias du='du -hd 0'
 
 ####################
