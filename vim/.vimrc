@@ -161,6 +161,10 @@ nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghn <Plug>(GitGutterNextHunk)
 nmap ghN <Plug>(GitGutterPrevHunk)
+highlight! link SignColumn LineNr
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/snippets']
