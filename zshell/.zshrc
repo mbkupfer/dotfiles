@@ -150,7 +150,7 @@ alias gcia="git commit -v --amend"
 alias hk="heroku"
 alias so="source"
 # get ls the way I like it
-alias ls='\ls -l --color=auto'
+alias ls='\ls -lh --color=auto'
 alias ldot="\ls -ald .* --color=auto"
 alias zshconfig="$EDITOR ~/.zshrc && source ~/.zshrc"
 alias da="direnv allow"
