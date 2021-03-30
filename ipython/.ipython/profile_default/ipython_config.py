@@ -5,13 +5,15 @@
 #------------------------------------------------------------------------------
 c.InteractiveShellApp.exec_lines = [
     '%store -r',
+    '%load_ext autoreload',
+    '%autoreload 2',
 ]
 c.TerminalIPythonApp.force_interact = True
 c.InteractiveShell.autocall = 1
 c.InteractiveShell.show_rewritten_input = False
 c.TerminalInteractiveShell.editing_mode = 'vi'
 c.StoreMagic.autorestore = True
-#c.Completer.use_jedi = False
+c.Completer.use_jedi = False
 #c.Completer.greedy = True
 
 

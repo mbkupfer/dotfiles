@@ -24,6 +24,4 @@ except ModuleNotFoundError:
 #  Global vars  #
 #################
 
-import sys
-executable = sys.executable
 
