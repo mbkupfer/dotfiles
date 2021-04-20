@@ -2,6 +2,7 @@
 *.log
 scratch.txt
 Thumbs.db
+*.msg
 
 # Environment
 tmp
