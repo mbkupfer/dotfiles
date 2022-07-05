@@ -1,9 +1,10 @@
 [user]
-    email = mbkupfer@gmail.com
+    email = maxim.kupfer@bullhorn.com
     name = Maxim Kupfer
 [core]
     excludesFile = ~/.config/git/ignore
     editor = vim
+	autocrlf = input
 [alias]
     st = status -sb
     co = checkout
@@ -29,3 +30,5 @@
     decorate = short
 [init]
     templatedir = ~/.config/git_template
+[credential]
+	helper = store

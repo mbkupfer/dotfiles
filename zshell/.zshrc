@@ -157,6 +157,7 @@ alias da="direnv allow"
 alias python="python3"
 alias pip="pip3"
 alias du='du -hd 0'
+alias nb='jupyter lab --no-browser --app-dir ~/'
 
 ####################
 #  autocompletion  #
@@ -178,6 +179,6 @@ test -e "${HOME}/.local/share/env" && source "${HOME}/.local/share/env"
 # allow $USER to use keys. Only enter once and it will remain enabled till
 # you delete it or reboot the server 
 ###########################################################################
-/usr/bin/keychain -q $HOME/.ssh/id_rsa
-source $HOME/.keychain/$HOST-sh
+## /usr/bin/keychain -q $HOME/.ssh/id_rsa 
+## source $HOME/.keychain/$HOST-sh
 
